@@ -11,7 +11,7 @@ mod tests {
 
     #[test]
     fn it_works() {
-        let result = kf::create_kf();
+        let result = KF::new(0.0, 1.0);
         assert_eq!(result.state_estimate, 0.0);
     }
 }
