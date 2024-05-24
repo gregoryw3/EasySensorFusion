@@ -1,0 +1,3 @@
+pub fn high_pass(/* parameters */) {
+    // High pass filter implementation...
+}
