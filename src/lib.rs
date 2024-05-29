@@ -1,9 +1,16 @@
-mod kf;
-mod ekf;
-mod filters;
+pub mod fusion {
+    pub mod ekf;
+    pub mod kf;
+}
 
-pub use kf::KF;
-pub use ekf::EKF;
+pub mod filters {
+    pub mod high_pass;
+    pub mod low_pass;
+}
+
+pub mod tools {
+    pub mod fusion_configurator;
+}
 
 #[cfg(test)]
 mod tests {
@@ -11,7 +18,7 @@ mod tests {
 
     #[test]
     fn it_works() {
-        let result = KF::new(0.0, 1.0);
+        let result = fusion::kf::KF::new(0.0, 0.0);
         assert_eq!(result.state_estimate, 0.0);
     }
 }

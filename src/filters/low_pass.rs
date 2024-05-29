@@ -8,12 +8,12 @@ pub struct LowPassFilter<T> {
     last_output: Option<T>,
 }
 
-impl<T> LowPassFilter<T> 
-    where
-    T: Copy + Mul<Output = T> + Sub<Output = T> + Add<Output = T> + From<f64>, 
+impl<T> LowPassFilter<T>
+where
+    T: Copy + Mul<Output = T> + Sub<Output = T> + Add<Output = T> + From<f64>,
 {
     /// Create a new low-pass filter with the given smoothing factor
-    /// 
+    ///
     /// # Arguments
     /// alpha - The smoothing factor
     pub fn new(alpha: T) -> Self {
@@ -22,7 +22,7 @@ impl<T> LowPassFilter<T>
             last_output: None,
         }
     }
-    
+
     pub fn filter(&mut self, input: T) -> T {
         match self.last_output {
             Some(last_output) => {
@@ -34,11 +34,11 @@ impl<T> LowPassFilter<T>
                 let output = self.alpha * input + (T::from(1.0) - self.alpha) * last_output;
                 self.last_output = Some(output);
                 output
-            },
+            }
             None => {
                 self.last_output = Some(input);
                 input
-            },
+            }
         }
     }
 }
